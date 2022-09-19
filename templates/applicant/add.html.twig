@@ -4,11 +4,10 @@
 {% endblock %}
 
 {% block body %}
-	<div
-		class="container">
-        <div>
-            <a href="{{ path('app_index') }}">Home Page</a>
-        </div>
+	<div class="container">
+		<div>
+			<a href="{{ path('app_index') }}">Home Page</a>
+		</div>
 		{# LINK TO FORM #}
 		<div>
 			<h1>APPLICATION</h1>
@@ -69,7 +68,9 @@
 			{{ form_widget(form.created ) }}
 			{{ form_errors(form.created) }}
 		</div>
-
+		<center>
+			<button type="submit" class="btn btn-info mt-2 ">PATEIKTI</button>
+		</center>
 		{{ form_end(form) }}
 
 
