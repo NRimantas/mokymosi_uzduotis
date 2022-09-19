@@ -6,6 +6,9 @@
 {% block body %}
 	<div
 		class="container">
+        <div>
+            <a href="{{ path('app_index') }}">Home Page</a>
+        </div>
 		{# LINK TO FORM #}
 		<div>
 			<h1>APPLICATION</h1>
@@ -68,6 +71,8 @@
 		</div>
 
 		{{ form_end(form) }}
+
+
 	</div>
 
 {% endblock %}

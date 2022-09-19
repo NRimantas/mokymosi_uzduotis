@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}HOME PAGE!{% endblock %}
+{% block title %}HOME PAGE!
+{% endblock %}
 
 {% block body %}
-{# LINK TO FORM #}
-    <div>
-        <a href="{{ path('app_application') }}">FILL APPLICATION</a>
-    </div>
+	<div
+		class="container">
+		{# LINK TO FORM #}
+		<div>
+            <center>
+			    <a href="{{ path('app_application') }}">FILL APPLICATION</a>
+            </center>
+		</div>
+	</div>
 {% endblock %}
