@@ -1,79 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}APPLICATION PAGE!
+{% block title %}PATEIKTI PARAIŠKĄ
 {% endblock %}
 
 {% block body %}
 	<div class="container">
+	{# HOME PAGE #}
 		<div>
-			<a href="{{ path('app_index') }}">Home Page</a>
-		</div>
-		{# LINK TO FORM #}
+			<a href="{{ path('app_index') }}">Į Pagrindinį</a>
+		</div>		
 		<div>
-			<h1>APPLICATION</h1>
+			<h1>Prašome užpildyti paraišką</h1>
 		</div>
-		{# FORM FOR APPLICANTS #}
-		{{ form_start(form) }}
-		{# first_name #}
-		<div>
-			{{ form_label(form.first_name, 'Vardas') }}
-			{{ form_widget(form.first_name ) }}
-			{{ form_errors(form.first_name) }}
-		</div>
-		{# last_name #}
-		<div>
-			{{ form_label(form.last_name, 'Pavardė') }}
-			{{ form_widget(form.last_name ) }}
-			{{ form_errors(form.last_name) }}
-		</div>
-		{# address #}
-		<div>
-			{{ form_label(form.address, 'Adresas') }}
-			{{ form_widget(form.address ) }}
-			{{ form_errors(form.address) }}
-		</div>
-		{# email #}
-		<div>
-			{{ form_label(form.email, 'El.Paštas') }}
-			{{ form_widget(form.email ) }}
-			{{ form_errors(form.email) }}
-		</div>
-		{# phone_number #}
-		<div>
-			{{ form_label(form.phone_number, 'Tel.Nr.') }}
-			{{ form_widget(form.phone_number ) }}
-			{{ form_errors(form.phone_number) }}
-		</div>
-		{# unique_number #}
-		<div>
-			{{ form_label(form.unique_house_number, 'Unikalus pastato numeris') }}
-			{{ form_widget(form.unique_house_number ) }}
-			{{ form_errors(form.unique_house_number) }}
-		</div>
-		{# project_number #}
-		<div>
-			{{ form_label(form.project_number, 'Projekto numeris') }}
-			{{ form_widget(form.project_number ) }}
-			{{ form_errors(form.project_number) }}
-		</div>
-		{# compensation_received #}
-		<div>
-			{{ form_label(form.compensation_received, 'Ar esate gavęs kompensaciją?') }}
-			{{ form_widget(form.compensation_received ) }}
-			{{ form_errors(form.compensation_received) }}
-		</div>
-		{# created date #}
-		<div>
-			{{ form_label(form.created, 'Paraiškos pildymo data:') }}
-			{{ form_widget(form.created ) }}
-			{{ form_errors(form.created) }}
-		</div>
-		<center>
-			<button type="submit" class="btn btn-info mt-2 ">PATEIKTI</button>
-		</center>
-		{{ form_end(form) }}
-
-
+		{# FORM FOR APPLICANTS  #}
+		{{ include('applicant/_form.html.twig') }}	
 	</div>
 
 {% endblock %}
