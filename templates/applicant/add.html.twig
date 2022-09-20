@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PATEIKTI PARAIŠKĄ
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+	{# HOME PAGE #}
+		<div>
+			<a href="{{ path('app_index') }}">Į Pagrindinį</a>
+		</div>		
+		<div>
+			<h1>Prašome užpildyti paraišką</h1>
+		</div>
+		{# FORM FOR APPLICANTS  #}
+		{{ include('applicant/_form.html.twig') }}	
+	</div>
+
+{% endblock %}
