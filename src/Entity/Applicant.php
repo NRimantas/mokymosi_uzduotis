@@ -38,8 +38,11 @@ class Applicant
     #[ORM\Column]
     private ?bool $compensation_received = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $created = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -142,14 +145,27 @@ class Applicant
         return $this;
     }
 
-    public function getCreated(): ?\DateTimeInterface
+
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->created;
+        return $this->createdAt;
     }
 
-    public function setCreated(\DateTimeInterface $created): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
-        $this->created = $created;
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

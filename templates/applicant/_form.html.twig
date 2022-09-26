@@ -2,44 +2,43 @@
 {{ form_start(form) }}
 {# first_name #}
 <div class="mb-3">
-	{{ form_label(form.first_name, 'Vardas') }}
+	{{ form_label(form.first_name) }}
 	{{ form_widget(form.first_name ) }}
 	{{ form_errors(form.first_name) }}
 </div>
 {# last_name #}
 <div class="mb-3">
-	{{ form_label(form.last_name, 'Pavardė') }}
+	{{ form_label(form.last_name) }}
 	{{ form_widget(form.last_name ) }}
 	{{ form_errors(form.last_name) }}
 </div>
 {# address #}
 <div class="mb-3">
-	{{ form_label(form.address, 'Adresas') }}
+	{{ form_label(form.address) }}
 	{{ form_widget(form.address ) }}
 	{{ form_errors(form.address) }}
 </div>
 {# email #}
 <div class="mb-3">
-	{{ form_label(form.email, 'El.Paštas') }}
+	{{ form_label(form.email) }}
 	{{ form_widget(form.email ) }}
 	{{ form_errors(form.email) }}
 </div>
 {# phone_number #}
 <div class="mb-3">
-	{{ form_label(form.phone_number, 'Tel.Nr.') }}
+	{{ form_label(form.phone_number) }}
 	{{ form_widget(form.phone_number ) }}
 	{{ form_errors(form.phone_number) }}
 </div>
 {# unique_number #}
 <div class="mb-3">
-	{{ form_label(form.unique_house_number, 'Unikalus pastato numeris') }}
-	{{ form_widget(form.unique_house_number, {'attr': {'placeholder':'0000-0000-0000'}}
-	) }}
+	{{ form_label(form.unique_house_number) }}
+	{{ form_widget(form.unique_house_number) }}
 	{{ form_errors(form.unique_house_number) }}
 </div>
 {# project_number #}
 <div class="mb-3">
-	{{ form_label(form.project_number, 'Projekto numeris') }}
+	{{ form_label(form.project_number) }}
 	{{ form_widget(form.project_number ) }}
 	{{ form_errors(form.project_number) }}
 </div>
@@ -47,16 +46,11 @@
 <div
 	class="mb-3">
 	{# how to change label to lithuanian, because widget is generating label automatically?? #}
-	{{ form_label(form, 'Ar esate gavęs kompensaciją?') }}
+	{{ form_label(form.compensation_received) }}
 	{{ form_widget(form.compensation_received ) }}
 	{{ form_errors(form.compensation_received) }}
 </div>
-{# created date #}
-<div class="mb-3">
-	{{ form_label(form.created, 'Paraiškos pildymo data:') }}
-	{{ form_widget(form.created ) }}
-	{{ form_errors(form.created) }}
-</div>
+
 
 <h6>Paspaudus "PATEIKTI", Jūs sutinkate su šiais įsipareigojimais:</h6>
     <div class="bg-light p-3 rounded-2">
