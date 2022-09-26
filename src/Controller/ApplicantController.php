@@ -12,13 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApplicantController extends AbstractController
 {
-    // HOME ROUTE
     #[Route('/', name: 'app_index')]
     public function index(): Response
     {
         return $this->render('applicant/index.html.twig');
     }
-    // CREATE APPLOCATION ROUTE
+    
     #[Route('/application', name: 'app_application')]
     public function add(Request $request , ApplicantRepository $applicants): Response
     {
@@ -29,7 +28,7 @@ class ApplicantController extends AbstractController
             $applicant = $form->getData();
             $applicants->add($applicant, true);
 
-
+            return $this->redirectToRoute('app_index');
             // TODO:
             // ADD FLASH MESSAGE
             // REDIRECT TO ANOTHER ROUTE
