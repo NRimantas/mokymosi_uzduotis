@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ApplicantRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ApplicantRepository::class)]
 class Applicant
@@ -15,18 +15,26 @@ class Applicant
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min:2, max:255, minMessage:'Vardą turi sudaryti ne mažiau nei 2 simboliai', maxMessage:'Vardą turi sudaryri ne daugiau nei 100 simbolių')]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min:2, max:255, minMessage:'Pavardę turi sudaryti ne mažiau nei 2 simboliai', maxMessage:'Pavardę turi sudaryri ne daugiau nei 100 simbolių')]
     private ?string $last_name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min:2, max:255, minMessage:'Adresą turi sudaryti ne mažiau nei 2 simboliai', maxMessage:'Adresą turi sudaryri ne daugiau nei 100 simbolių')]
     private ?string $address = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 11)]
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min:8,max:12, minMessage:'Telefono numerį turi sudaryti bent 8 simboliai',maxMessage:'Telefono numerį turi sudaryti ne daugiau nei 12 simbolių')]
     private ?string $phone_number = null;
 
     #[ORM\Column(length: 255)]

@@ -38,7 +38,8 @@ class ApplicantType extends AbstractType
                 'label' => 'Projekto numeris'
             ])
             ->add('compensation_received', CheckboxType::class, [
-                'label' => 'Ar esate gavęs kompensaciją?'
+                'label' => 'Ar esate gavęs kompensaciją?',
+                'required' => false,
             ])
             
         ;

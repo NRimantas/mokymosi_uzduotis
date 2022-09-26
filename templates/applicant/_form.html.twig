@@ -1,5 +1,5 @@
 {# FORM FOR APPLICANTS #}
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 {# first_name #}
 <div class="mb-3">
 	{{ form_label(form.first_name) }}

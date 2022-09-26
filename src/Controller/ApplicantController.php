@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Applicant;
 use App\Form\ApplicantType;
 use App\Repository\ApplicantRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ApplicantController extends AbstractController
 {
@@ -26,13 +27,14 @@ class ApplicantController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) { 
             $applicant = $form->getData();
+            $applicant->setCreatedAt(new DateTimeImmutable());
+            $applicant->setUpdatedAt(new DateTimeImmutable());
             $applicants->add($applicant, true);
 
-            return $this->redirectToRoute('app_index');
-            // TODO:
-            // ADD FLASH MESSAGE
-            // REDIRECT TO ANOTHER ROUTE
+             $this->addFlash('success', 'Forma buvo sėkmingai užpildyta!');
 
+
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->renderForm('applicant/add.html.twig', [
