@@ -5,20 +5,20 @@ namespace App\Controller;
 use App\Entity\Applicant;
 use App\Form\ApplicantType;
 use App\Repository\ApplicantRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ApplicantController extends AbstractController
 {
-    // HOME ROUTE
     #[Route('/', name: 'app_index')]
     public function index(): Response
     {
         return $this->render('applicant/index.html.twig');
     }
-    // CREATE APPLOCATION ROUTE
+    
     #[Route('/application', name: 'app_application')]
     public function add(Request $request , ApplicantRepository $applicants): Response
     {
@@ -27,13 +27,14 @@ class ApplicantController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) { 
             $applicant = $form->getData();
+            $applicant->setCreatedAt(new DateTimeImmutable());
+            $applicant->setUpdatedAt(new DateTimeImmutable());
             $applicants->add($applicant, true);
 
+             $this->addFlash('success', 'Forma buvo sėkmingai užpildyta!');
 
-            // TODO:
-            // ADD FLASH MESSAGE
-            // REDIRECT TO ANOTHER ROUTE
 
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->renderForm('applicant/add.html.twig', [
