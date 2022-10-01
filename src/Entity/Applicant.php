@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ApplicantRepository;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,35 +18,39 @@ class Applicant
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     #[Assert\Length(min:2, max:255, minMessage:'Vardą turi sudaryti ne mažiau nei 2 simboliai', maxMessage:'Vardą turi sudaryri ne daugiau nei 100 simbolių')]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     #[Assert\Length(min:2, max:255, minMessage:'Pavardę turi sudaryti ne mažiau nei 2 simboliai', maxMessage:'Pavardę turi sudaryri ne daugiau nei 100 simbolių')]
     private ?string $last_name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     #[Assert\Length(min:2, max:255, minMessage:'Adresą turi sudaryti ne mažiau nei 2 simboliai', maxMessage:'Adresą turi sudaryri ne daugiau nei 100 simbolių')]
     private ?string $address = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     #[Assert\Length(min:8,max:12, minMessage:'Telefono numerį turi sudaryti bent 8 simboliai',maxMessage:'Telefono numerį turi sudaryti ne daugiau nei 12 simbolių')]
     private ?string $phone_number = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     private ?string $unique_house_number = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     private ?string $project_number = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     private ?bool $compensation_received = null;
 
     #[ORM\Column]
@@ -52,6 +58,14 @@ class Applicant
 
     #[ORM\Column]
     private ?DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToMany(targetEntity: ToolMeasure::class, inversedBy: 'applicant')]
+    private Collection $tool_measure;
+
+    public function __construct()
+    {
+        $this->tool_measure = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -175,6 +189,30 @@ class Applicant
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ToolMeasure>
+     */
+    public function getToolMeasure(): Collection
+    {
+        return $this->tool_measure;
+    }
+
+    public function addToolMeasure(ToolMeasure $toolMeasure): self
+    {
+        if (!$this->tool_measure->contains($toolMeasure)) {
+            $this->tool_measure->add($toolMeasure);
+        }
+
+        return $this;
+    }
+
+    public function removeToolMeasure(ToolMeasure $toolMeasure): self
+    {
+        $this->tool_measure->removeElement($toolMeasure);
 
         return $this;
     }
