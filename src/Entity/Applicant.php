@@ -58,10 +58,6 @@ class Applicant
     #[ORM\Column]
     private ?DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'user_id')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?ProjectTool $projectTool = null;
-
   
 
     public function getId(): ?int
@@ -190,17 +186,6 @@ class Applicant
         return $this;
     }
 
-    public function getProjectTool(): ?ProjectTool
-    {
-        return $this->projectTool;
-    }
-
-    public function setProjectTool(?ProjectTool $projectTool): self
-    {
-        $this->projectTool = $projectTool;
-
-        return $this;
-    }
 
 
 
