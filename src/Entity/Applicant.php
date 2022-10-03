@@ -50,7 +50,6 @@ class Applicant
     private ?string $project_number = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     private ?bool $compensation_received = null;
 
     #[ORM\Column]
@@ -59,13 +58,11 @@ class Applicant
     #[ORM\Column]
     private ?DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToMany(targetEntity: ToolMeasure::class, inversedBy: 'applicant')]
-    private Collection $tool_measure;
+    #[ORM\ManyToOne(inversedBy: 'user_id')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?ProjectTool $projectTool = null;
 
-    public function __construct()
-    {
-        $this->tool_measure = new ArrayCollection();
-    }
+  
 
     public function getId(): ?int
     {
@@ -193,27 +190,19 @@ class Applicant
         return $this;
     }
 
-    /**
-     * @return Collection<int, ToolMeasure>
-     */
-    public function getToolMeasure(): Collection
+    public function getProjectTool(): ?ProjectTool
     {
-        return $this->tool_measure;
+        return $this->projectTool;
     }
 
-    public function addToolMeasure(ToolMeasure $toolMeasure): self
+    public function setProjectTool(?ProjectTool $projectTool): self
     {
-        if (!$this->tool_measure->contains($toolMeasure)) {
-            $this->tool_measure->add($toolMeasure);
-        }
+        $this->projectTool = $projectTool;
 
         return $this;
     }
 
-    public function removeToolMeasure(ToolMeasure $toolMeasure): self
-    {
-        $this->tool_measure->removeElement($toolMeasure);
 
-        return $this;
-    }
+
+  
 }

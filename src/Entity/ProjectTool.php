@@ -18,12 +18,15 @@ class ProjectTool
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\OneToMany(mappedBy: 'projectTool', targetEntity: ToolMeasure::class, orphanRemoval: true)]
-    private Collection $tool_measure;
+    #[ORM\Column(length: 255)]
+    private ?string $tool_measure = null;
+
+    #[ORM\OneToMany(mappedBy: 'projectTool', targetEntity: Applicant::class, orphanRemoval: true)]
+    private Collection $user_id;
 
     public function __construct()
     {
-        $this->tool_measure = new ArrayCollection();
+        $this->user_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -43,30 +46,42 @@ class ProjectTool
         return $this;
     }
 
-    /**
-     * @return Collection<int, ToolMeasure>
-     */
-    public function getToolMeasure(): Collection
+    public function getToolMeasure(): ?string
     {
         return $this->tool_measure;
     }
 
-    public function addToolMeasure(ToolMeasure $toolMeasure): self
+    public function setToolMeasure(string $tool_measure): self
     {
-        if (!$this->tool_measure->contains($toolMeasure)) {
-            $this->tool_measure->add($toolMeasure);
-            $toolMeasure->setProjectTool($this);
+        $this->tool_measure = $tool_measure;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Applicant>
+     */
+    public function getUserId(): Collection
+    {
+        return $this->user_id;
+    }
+
+    public function addUserId(Applicant $userId): self
+    {
+        if (!$this->user_id->contains($userId)) {
+            $this->user_id->add($userId);
+            $userId->setProjectTool($this);
         }
 
         return $this;
     }
 
-    public function removeToolMeasure(ToolMeasure $toolMeasure): self
+    public function removeUserId(Applicant $userId): self
     {
-        if ($this->tool_measure->removeElement($toolMeasure)) {
+        if ($this->user_id->removeElement($userId)) {
             // set the owning side to null (unless already changed)
-            if ($toolMeasure->getProjectTool() === $this) {
-                $toolMeasure->setProjectTool(null);
+            if ($userId->getProjectTool() === $this) {
+                $userId->setProjectTool(null);
             }
         }
 
