@@ -3,6 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Applicant;
+use App\Entity\ProjectTool;
+use App\Entity\ToolMeasure;
+use App\Repository\ProjectToolRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -40,6 +44,18 @@ class ApplicantType extends AbstractType
             ->add('compensation_received', CheckboxType::class, [
                 'label' => 'Ar esate gavęs kompensaciją?',
                 'required' => false,
+            ])
+            ->add('projectTool', EntityType::class, [
+                'class' => ProjectTool::class,
+                'multiple' => true,
+                'label' => 'Pasirinkite norimą diegti priemonę: ',
+               
+            ]) 
+            ->add('toolMeasure', EntityType::class, [
+                'class' => ToolMeasure::class,
+                'multiple' => true,
+                'label' => 'Pasirinkite priemonės apimtį: ',
+                
             ])   
             
         ;

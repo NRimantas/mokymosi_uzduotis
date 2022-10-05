@@ -50,16 +50,20 @@
 	{{ form_widget(form.compensation_received ) }}
 	{{ form_errors(form.compensation_received) }}
 </div>
-{# <div class="mb-2">
-	<label for="project_tool" class="mb-2">Pasirinkite norimą diegti priemonę:</label>
-	<select class="form-select" aria-label="Default select example">
-		<option selected></option>
-		{% for projectTool in projectTools %}
-				<option value="1">{{projectTool.title}}</option>
-		{% endfor %}
-		
-	</select>
-</div> #}
+<div
+	class="mb-3">
+	{# how to change label to lithuanian, because widget is generating label automatically?? #}
+	{{ form_label(form.projectTool) }}
+	{{ form_widget(form.projectTool ) }}
+	{{ form_errors(form.projectTool) }}
+</div>
+<div
+	class="mb-5">
+	{# how to change label to lithuanian, because widget is generating label automatically?? #}
+	{{ form_label(form.toolMeasure) }}
+	{{ form_widget(form.toolMeasure ) }}
+	{{ form_errors(form.toolMeasure) }}
+</div>
 
 
 <h6>Paspaudus "PATEIKTI", Jūs sutinkate su šiais įsipareigojimais:</h6>

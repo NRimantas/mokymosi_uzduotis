@@ -58,7 +58,18 @@ class Applicant
     #[ORM\Column]
     private ?DateTimeImmutable $updatedAt = null;
 
-  
+    #[ORM\ManyToMany(targetEntity: ToolMeasure::class, inversedBy: 'applicants')]
+    private Collection $toolMeasure;
+
+    #[ORM\ManyToMany(targetEntity: ProjectTool::class, inversedBy: 'applicants')]
+    private Collection $projectTool;
+
+    public function __construct()
+    {
+        $this->toolMeasure = new ArrayCollection();
+        $this->projectTool = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -186,8 +197,54 @@ class Applicant
         return $this;
     }
 
+    /**
+     * @return Collection<int, ToolMeasure>
+     */
+    public function getToolMeasure(): Collection
+    {
+        return $this->toolMeasure;
+    }
 
+    public function addToolMeasure(ToolMeasure $toolMeasure): self
+    {
+        if (!$this->toolMeasure->contains($toolMeasure)) {
+            $this->toolMeasure->add($toolMeasure);
+        }
 
+        return $this;
+    }
 
+    public function removeToolMeasure(ToolMeasure $toolMeasure): self
+    {
+        $this->toolMeasure->removeElement($toolMeasure);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProjectTool>
+     */
+    public function getProjectTool(): Collection
+    {
+        return $this->projectTool;
+    }
+
+    public function addProjectTool(ProjectTool $projectTool): self
+    {
+        if (!$this->projectTool->contains($projectTool)) {
+            $this->projectTool->add($projectTool);
+        }
+
+        return $this;
+    }
+
+    public function removeProjectTool(ProjectTool $projectTool): self
+    {
+        $this->projectTool->removeElement($projectTool);
+
+        return $this;
+    }
+
+  
   
 }

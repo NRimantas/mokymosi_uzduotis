@@ -3,49 +3,84 @@
 namespace App\DataFixtures;
 
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
+
 use App\Entity\ProjectTool;
+use App\Entity\ToolMeasure;
+use DateTimeImmutable;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-//         $projectTool = new ProjectTool();
-//         $projectTool->setTitle('Saulės');
-//         $projectTool->setToolMeasure('Saulės priemonė 1 | 1000');        
-//         $manager->persist($projectTool);
+        $projectTool = new ProjectTool();
+        $projectTool->setTitle('Saulės'); 
+        $projectTool->setCreatedAt(new DateTimeImmutable());  
+        $manager->persist($projectTool);
 
-//         $projectTool1 = new ProjectTool();
-//         $projectTool1->setTitle('Saulės'); 
-//         $projectTool1->setToolMeasure('Saulės priemonė 2 | 2000');
-//         $manager->persist($projectTool1);
+        $toolMeasure = new ToolMeasure(); 
+        $toolMeasure->setTitle('Saulės priemonė 1 | 1000');  
+        $toolMeasure->setProjectTool($projectTool);  
+        $toolMeasure->setCreatedAt(new DateTimeImmutable());  
+        $manager->persist($toolMeasure);
 
-//         $projectTool2 = new ProjectTool();
-//         $projectTool2->setTitle('Vėjo'); 
-//         $projectTool2->setToolMeasure('Vėjo priemonė 1 | 3000');       
-//         $manager->persist($projectTool2);
+        $toolMeasure1 = new ToolMeasure(); 
+        $toolMeasure1->setTitle('Saulės priemonė 2 | 2000'); 
+        $toolMeasure1->setProjectTool($projectTool); 
+        $toolMeasure1->setCreatedAt(new DateTimeImmutable());     
+        $manager->persist($toolMeasure1);
 
-//         $projectTool3 = new ProjectTool();
-//         $projectTool3->setTitle('Geoterminės energijos');  
-//         $projectTool3->setToolMeasure('Geoterminės energijos priemonė 1 | 4000');
-//         $manager->persist($projectTool3);
+        // 
+        $projectTool1 = new ProjectTool();
+        $projectTool1->setTitle('Vėjo'); 
+        $projectTool1->setCreatedAt(new DateTimeImmutable());  
+        $manager->persist($projectTool1);
 
-//         $projectTool4 = new ProjectTool();
-//         $projectTool4->setTitle('Biokuro');
-//         $projectTool4->setToolMeasure('Biokuro priemonė 1 | 6000');        
-//         $manager->persist($projectTool4);
+        $toolMeasure2 = new ToolMeasure(); 
+        $toolMeasure2->setTitle('Vėjo priemonė 1 | 3000');   
+        $toolMeasure2->setProjectTool($projectTool1);
+        $toolMeasure2->setCreatedAt(new DateTimeImmutable());        
+        $manager->persist($toolMeasure2);
 
-//         $projectTool5 = new ProjectTool();
-//         $projectTool5->setTitle('Biokuro');
-//         $projectTool5->setToolMeasure('Biokuro priemonė 2 | 7000');        
-//         $manager->persist($projectTool5);
+        // // 
 
-//         $projectTool6 = new ProjectTool();
-//         $projectTool6->setTitle('Biokuro');
-//         $projectTool6->setToolMeasure('Biokuro priemonė 3 | 8000');        
-//         $manager->persist($projectTool6);
+        $projectTool2 = new ProjectTool();
+        $projectTool2->setTitle('Geoterminės energijos priemonė'); 
+        $projectTool2->setCreatedAt(new DateTimeImmutable());        
+        $manager->persist($projectTool2);
 
-//         $manager->flush();
+        $toolMeasure3 = new ToolMeasure(); 
+        $toolMeasure3->setTitle('Geoterminės energijos priemonė 1 | 4000'); 
+        $toolMeasure3->setCreatedAt(new DateTimeImmutable());  
+        $toolMeasure3->setProjectTool($projectTool2);            
+        $manager->persist($toolMeasure3);
+
+        // // 
+
+        $projectTool3 = new ProjectTool();
+        $projectTool3->setTitle('Biokuro'); 
+        $projectTool3->setCreatedAt(new DateTimeImmutable());          
+        $manager->persist($projectTool3);    
+
+        $toolMeasure4 = new ToolMeasure(); 
+        $toolMeasure4->setTitle('Biokuro priemonė 1 | 6000'); 
+        $toolMeasure4->setProjectTool($projectTool3);
+        $toolMeasure4->setCreatedAt(new DateTimeImmutable());  
+        $manager->persist($toolMeasure4);
+
+        $toolMeasure5 = new ToolMeasure(); 
+        $toolMeasure5->setTitle('Biokuro priemonė 2 | 7000');  
+        $toolMeasure5->setProjectTool($projectTool3); 
+        $toolMeasure5->setCreatedAt(new DateTimeImmutable());             
+        $manager->persist($toolMeasure5);
+
+        $toolMeasure6 = new ToolMeasure(); 
+        $toolMeasure6->setTitle('Biokuro priemonė 3 | 8000'); 
+        $toolMeasure6->setProjectTool($projectTool3); 
+        $toolMeasure6->setCreatedAt(new DateTimeImmutable());      
+        $manager->persist($toolMeasure6);
+
+        $manager->flush();
     }
 }
