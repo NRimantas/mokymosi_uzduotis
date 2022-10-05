@@ -38,7 +38,7 @@ class Applicant
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
-    #[Assert\Length(min:8,max:12, minMessage:'Telefono numerį turi sudaryti bent 8 simboliai',maxMessage:'Telefono numerį turi sudaryti ne daugiau nei 12 simbolių')]
+    #[Assert\Length(min:8, max:12, minMessage:'Telefono numerį turi sudaryti bent 8 simboliai', maxMessage:'Telefono numerį turi sudaryti ne daugiau nei 12 simbolių')]
     private ?string $phone_number = null;
 
     #[ORM\Column(length: 255)]
@@ -244,7 +244,4 @@ class Applicant
 
         return $this;
     }
-
-  
-  
 }

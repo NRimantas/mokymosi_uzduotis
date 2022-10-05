@@ -28,6 +28,9 @@ class ToolMeasure
     #[ORM\ManyToMany(targetEntity: Applicant::class, mappedBy: 'toolMeasure')]
     private Collection $applicants;
 
+    #[ORM\Column]
+    private ?float $price_per_unit = null;
+
     public function __construct()
     {
         $this->applicants = new ArrayCollection();
@@ -104,5 +107,17 @@ class ToolMeasure
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    public function getPricePerUnit(): ?float
+    {
+        return $this->price_per_unit;
+    }
+
+    public function setPricePerUnit(float $price_per_unit): self
+    {
+        $this->price_per_unit = $price_per_unit;
+
+        return $this;
     }
 }
