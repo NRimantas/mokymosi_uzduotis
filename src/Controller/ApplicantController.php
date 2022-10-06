@@ -35,9 +35,7 @@ class ApplicantController extends AbstractController
             $applicants->add($applicant, true);
 
             $this->addFlash('success', 'Forma buvo sėkmingai užpildyta!');
-
-
-
+            
             return $this->redirectToRoute('app_index');
         }
 
@@ -45,8 +43,6 @@ class ApplicantController extends AbstractController
             'form' => $form,
             'projectTools' => $projectTools->findAll(),
             'toolMeasures' => $toolMeasures->findAll(),
-
-
         ]);
     }
 }
