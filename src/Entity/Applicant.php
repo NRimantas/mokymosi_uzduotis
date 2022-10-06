@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ApplicantRepository;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,32 +18,35 @@ class Applicant
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     #[Assert\Length(min:2, max:255, minMessage:'Vardą turi sudaryti ne mažiau nei 2 simboliai', maxMessage:'Vardą turi sudaryri ne daugiau nei 100 simbolių')]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     #[Assert\Length(min:2, max:255, minMessage:'Pavardę turi sudaryti ne mažiau nei 2 simboliai', maxMessage:'Pavardę turi sudaryri ne daugiau nei 100 simbolių')]
     private ?string $last_name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     #[Assert\Length(min:2, max:255, minMessage:'Adresą turi sudaryti ne mažiau nei 2 simboliai', maxMessage:'Adresą turi sudaryri ne daugiau nei 100 simbolių')]
     private ?string $address = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
-    #[Assert\Length(min:8,max:12, minMessage:'Telefono numerį turi sudaryti bent 8 simboliai',maxMessage:'Telefono numerį turi sudaryti ne daugiau nei 12 simbolių')]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
+    #[Assert\Length(min:8, max:12, minMessage:'Telefono numerį turi sudaryti bent 8 simboliai', maxMessage:'Telefono numerį turi sudaryti ne daugiau nei 12 simbolių')]
     private ?string $phone_number = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     private ?string $unique_house_number = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:'Šis laukelis turi būti užpildytas!')]
     private ?string $project_number = null;
 
     #[ORM\Column]
@@ -52,6 +57,19 @@ class Applicant
 
     #[ORM\Column]
     private ?DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToMany(targetEntity: ToolMeasure::class, inversedBy: 'applicants')]
+    private Collection $toolMeasure;
+
+    #[ORM\ManyToMany(targetEntity: ProjectTool::class, inversedBy: 'applicants')]
+    private Collection $projectTool;
+
+    public function __construct()
+    {
+        $this->toolMeasure = new ArrayCollection();
+        $this->projectTool = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -175,6 +193,54 @@ class Applicant
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ToolMeasure>
+     */
+    public function getToolMeasure(): Collection
+    {
+        return $this->toolMeasure;
+    }
+
+    public function addToolMeasure(ToolMeasure $toolMeasure): self
+    {
+        if (!$this->toolMeasure->contains($toolMeasure)) {
+            $this->toolMeasure->add($toolMeasure);
+        }
+
+        return $this;
+    }
+
+    public function removeToolMeasure(ToolMeasure $toolMeasure): self
+    {
+        $this->toolMeasure->removeElement($toolMeasure);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProjectTool>
+     */
+    public function getProjectTool(): Collection
+    {
+        return $this->projectTool;
+    }
+
+    public function addProjectTool(ProjectTool $projectTool): self
+    {
+        if (!$this->projectTool->contains($projectTool)) {
+            $this->projectTool->add($projectTool);
+        }
+
+        return $this;
+    }
+
+    public function removeProjectTool(ProjectTool $projectTool): self
+    {
+        $this->projectTool->removeElement($projectTool);
 
         return $this;
     }

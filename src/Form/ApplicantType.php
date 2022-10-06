@@ -3,12 +3,15 @@
 namespace App\Form;
 
 use App\Entity\Applicant;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Entity\ProjectTool;
+use App\Entity\ToolMeasure;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ApplicantType extends AbstractType
 {
@@ -41,7 +44,20 @@ class ApplicantType extends AbstractType
                 'label' => 'Ar esate gavęs kompensaciją?',
                 'required' => false,
             ])
-            
+            ->add('projectTool', EntityType::class, [
+                'class' => ProjectTool::class,
+                'multiple' => true,
+                'label' => 'Pasirinkite norimą diegti priemonę: ',
+
+            ])
+            ->add('toolMeasure', EntityType::class, [
+                'class' => ToolMeasure::class,
+                'multiple' => true,
+                'label' => 'Pasirinkite priemonės apimtį: ',
+
+            ])
+
+
         ;
     }
 

@@ -43,27 +43,38 @@
 	{{ form_errors(form.project_number) }}
 </div>
 {# compensation_received #}
-<div
-	class="mb-3">
-	{# how to change label to lithuanian, because widget is generating label automatically?? #}
+<div class="mb-3">
 	{{ form_label(form.compensation_received) }}
 	{{ form_widget(form.compensation_received ) }}
 	{{ form_errors(form.compensation_received) }}
 </div>
+{# choose project tool #}
+
+<div class="mb-2">
+	{{ form_label(form.projectTool) }}
+	{{ form_widget(form.projectTool ) }}
+	{{ form_errors(form.projectTool) }}
+</div>
+{# choose tool measure #}
+<div class="mb-5">
+	{{ form_label(form.toolMeasure) }}
+	{{ form_widget(form.toolMeasure ) }}
+	{{ form_errors(form.toolMeasure) }}
+</div>
 
 
 <h6>Paspaudus "PATEIKTI", Jūs sutinkate su šiais įsipareigojimais:</h6>
-    <div class="bg-light p-3 rounded-2">
-    <h4>Naudojimosi sąlygos</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro animi aperiam dolor, aliquid quos, nostrum assumenda esse consectetur quisquam inventore saepe hic, provident vitae explicabo adipisci impedit! Iure, quasi soluta.</p>
-    <h4>Privatumo politika</h4>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae quibusdam magni praesentium molestias explicabo ut debitis, voluptates numquam eaque saepe, unde eveniet quisquam, amet officiis odit facere provident odio expedita.</p>
-    <h4>Pareiškėjo įsipareigojimai</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore cum praesentium eaque nostrum quod deleniti quia maiores ea, necessitatibus quibusdam, suscipit sit similique mollitia. Assumenda quos sequi libero provident obcaecati!</p>
-    <h4>Paslaugos teikėjo įsipareigojimai</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quos sunt hic numquam, incidunt pariatur mollitia nisi fugit? Alias quo corporis voluptates reprehenderit culpa labore provident ipsum animi praesentium esse?</p>
-    
-    </div>
+<div class="bg-light p-3 rounded-2">
+	<h4>Naudojimosi sąlygos</h4>
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro animi aperiam dolor, aliquid quos, nostrum assumenda esse consectetur quisquam inventore saepe hic, provident vitae explicabo adipisci impedit! Iure, quasi soluta.</p>
+	<h4>Privatumo politika</h4>
+	<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae quibusdam magni praesentium molestias explicabo ut debitis, voluptates numquam eaque saepe, unde eveniet quisquam, amet officiis odit facere provident odio expedita.</p>
+	<h4>Pareiškėjo įsipareigojimai</h4>
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore cum praesentium eaque nostrum quod deleniti quia maiores ea, necessitatibus quibusdam, suscipit sit similique mollitia. Assumenda quos sequi libero provident obcaecati!</p>
+	<h4>Paslaugos teikėjo įsipareigojimai</h4>
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quos sunt hic numquam, incidunt pariatur mollitia nisi fugit? Alias quo corporis voluptates reprehenderit culpa labore provident ipsum animi praesentium esse?</p>
+
+</div>
 
 <center>
 	<button type="submit" class="btn btn-info mt-2 ">PATEIKTI</button>
